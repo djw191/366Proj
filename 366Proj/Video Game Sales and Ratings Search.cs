@@ -133,7 +133,7 @@ namespace _366Proj
                     else
                         platformString += " OR g.platform = '" + checkedItems[i] + "'";
                 }
-                platformString += ") AND";
+                platformString += ") AND ";
             }
             string searchString = searchResultBox.Text;
             SearchHelper(searchString);
@@ -194,6 +194,11 @@ namespace _366Proj
                 // dgv.CurrentRow.Cells[0] bring new panel up and use an sql query based on row cell[0] to bring of description
 
             }
+        }
+
+        private void Platform_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace _366Proj
 {
@@ -186,19 +187,31 @@ namespace _366Proj
 
         private void resultsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = sender as DataGridView;
-            if (dgv == null)
-                return;
-            if (dgv.CurrentRow.Selected)
-            {
-                // dgv.CurrentRow.Cells[0] bring new panel up and use an sql query based on row cell[0] to bring of description
-
-            }
+            
         }
 
         private void Platform_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void resultsGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("/nATTEMPTING LINK/");
+            using (SQLiteConnection conn = new SQLiteConnection(connString))
+            {
+                conn.Open();
+                using (SQLiteCommand fmd = conn.CreateCommand())
+                {
+                    fmd.CommandText = "SELECT v.url FROM Game g LEFT JOIN VGChartzScore v ON g.name = v.name AND g.platform = v.platform WHERE g.name = '" + resultsGrid.Rows[e.RowIndex].Cells[0].Value + "' AND g.platform = '" + resultsGrid.Rows[e.RowIndex].Cells[1].Value + "'";
+                    fmd.CommandType = CommandType.Text;
+                    SQLiteDataReader r = fmd.ExecuteReader();
+                    r.Read();
+                    ProcessStartInfo sInfo = new ProcessStartInfo(r.GetString(0));
+                    Process.Start(sInfo);
+                }
+                conn.Close();
+            }
         }
     }
 }

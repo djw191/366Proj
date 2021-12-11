@@ -23,7 +23,7 @@ namespace _366Proj
         string platformString = "";
 
         // Bryce Variables
-        int yourScore = 0;      // the score of the review being made/edited\
+        int yourScore = 0;      // the score of the review being made/edited
         
 
         public Form1()

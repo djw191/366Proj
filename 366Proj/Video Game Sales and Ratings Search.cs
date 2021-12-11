@@ -246,6 +246,8 @@ namespace _366Proj
             viewUserReviewsPanel.Visible = true;
             mainPagePanel.Visible = false;
             resultsPage.Visible = false;
+
+            getYourReviews();
         }
 
         private void viewUserReviews_Back_Click(object sender, EventArgs e)
@@ -283,13 +285,19 @@ namespace _366Proj
             Console.WriteLine(query);
             using (SQLiteConnection conn = new SQLiteConnection(connString))
             {
-                conn.Open();
-                var da = new SQLiteDataAdapter(query, conn);
-                DataTable dtbl = new DataTable();
-                da.Fill(dtbl);
-                dataGrid.DataSource = dtbl;
-                dataGrid.Update();
-                dataGrid.Refresh();
+                try { 
+                    conn.Open();
+                    var da = new SQLiteDataAdapter(query, conn);
+                    DataTable dtbl = new DataTable();
+                    da.Fill(dtbl);
+                    dataGrid.DataSource = dtbl;
+                    dataGrid.Update();
+                    dataGrid.Refresh();
+                }
+                    catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
                 conn.Close();
             }
         }

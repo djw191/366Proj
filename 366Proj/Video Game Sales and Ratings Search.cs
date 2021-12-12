@@ -25,8 +25,9 @@ namespace _366Proj
         // Bryce Variables
 
         int yourScore = 0;      // the score of the review being made/edited
-        String[] currentReview = { "", "", "" }; // [0] = name of game, [1] = platform of game, [2] = review text;
+        string[] currentReview = { "", "", "" }; // [0] = name of game, [1] = platform of game, [2] = review text;
         int createReviewMode = 0;   // used for save button logic, 0 = create new review, 1 = edit existing review
+        int createGameMode = 0;     // used for save button logic, 0 = create new review, 1 = edit existing review
 
         // End of Bryce Variables
 
@@ -209,17 +210,28 @@ namespace _366Proj
             Console.WriteLine("/nATTEMPTING LINK/");
             using (SQLiteConnection conn = new SQLiteConnection(connString))
             {
-                conn.Open();
                 using (SQLiteCommand fmd = conn.CreateCommand())
                 {
-                    fmd.CommandText = "SELECT v.url FROM Game g LEFT JOIN VGChartzScore v ON g.name = v.name AND g.platform = v.platform WHERE g.name = '" + resultsGrid.Rows[e.RowIndex].Cells[0].Value + "' AND g.platform = '" + resultsGrid.Rows[e.RowIndex].Cells[1].Value + "'";
-                    fmd.CommandType = CommandType.Text;
-                    SQLiteDataReader r = fmd.ExecuteReader();
-                    r.Read();
-                    ProcessStartInfo sInfo = new ProcessStartInfo(r.GetString(0));
-                    Process.Start(sInfo);
+                    try
+                    {
+                        conn.Open();
+                        fmd.CommandText = "SELECT v.url FROM Game g LEFT JOIN VGChartzScore v ON g.name = v.name AND g.platform = v.platform WHERE g.name = '" + resultsGrid.Rows[e.RowIndex].Cells[0].Value + "' AND g.platform = '" + resultsGrid.Rows[e.RowIndex].Cells[1].Value + "'";
+                        fmd.CommandType = CommandType.Text;
+                        SQLiteDataReader r = fmd.ExecuteReader();
+                        r.Read();
+                        ProcessStartInfo sInfo = new ProcessStartInfo(r.GetString(0));
+                        Process.Start(sInfo);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("A webpage does not exist for this game.");
+                    }
+                    finally
+                    {
+                        fmd.Dispose();
+                        conn.Close();
+                    }
                 }
-                conn.Close();
             }
         }
 
@@ -227,8 +239,6 @@ namespace _366Proj
         {
 
         }
-
-        // Bryce Stuff Starts Here
 
         public void PopulateAnyTable(string query, DataGridView dataGrid)       // should be exactly the same as PopulateTable(), but this one accepts a dataGridView parameter for use with any dataGridView
         {
@@ -256,7 +266,7 @@ namespace _366Proj
             }
         }
 
-        private void setReviewValues(String Name, String Platform)
+        private void setReviewValues(string Name, string Platform)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connString))
             {
@@ -325,7 +335,7 @@ namespace _366Proj
             }
         }
 
-        private void deleteDataFromTable(String table, String statement)
+        private void deleteDataFromTable(string table, string statement)
         {
             Console.WriteLine(table);
             using (SQLiteConnection conn = new SQLiteConnection(connString))
@@ -436,6 +446,8 @@ namespace _366Proj
 
         private void createUserReviews_Back(object sender, EventArgs e)         // Back button for createUserReviews panel
         {
+            getYourReviews();
+
             viewUserReviewsPanel.Visible = true;
             createUserReviewsPanel.Visible = false;
 
@@ -443,9 +455,6 @@ namespace _366Proj
             createReviewGameTitle_textBox.Visible = false;
             createReviewPlatform_Label.Visible = false;
             createReviewPlatform_textBox.Visible = false;
-
-            viewUserReviews_dataGridView.Update();
-            viewUserReviews_dataGridView.Refresh();
         }
 
         private void createUserReviews_Save_Click(object sender, EventArgs e)   // Save button
@@ -459,8 +468,9 @@ namespace _366Proj
                 if (newName != "" && newPlatform != "")
                 {
                     // first delete the old review (if it exists), then insert the new one
-                    deleteDataFromTable("YourReviews", "Name = '" + newName + "' AND Platform = '" + newPlatform + "'");
-                    String textReview = createUserReview_TextReview.Text;
+                    string arguments = "Name = '" + newName + "' AND Platform = '" + newPlatform + "'";
+                    deleteDataFromTable("YourReviews", arguments);
+                    string textReview = createUserReview_TextReview.Text;
                     insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "'" + newName + "', '" + newPlatform + "', '" + textReview + "', " + yourScore);
                 }
             }
@@ -469,8 +479,9 @@ namespace _366Proj
                 if (currentReview[0] != "" && currentReview[1] != "")
                 {
                     // first delete the old review, then insert the new one
-                    deleteDataFromTable("YourReviews", "Name = '" + currentReview[0] + "' AND Platform = '" + currentReview[1] + "'");
-                    String textReview = createUserReview_TextReview.Text;
+                    string arguments = "Name = '" + currentReview[0] + "' AND Platform = '" + currentReview[1] + "'";
+                    deleteDataFromTable("YourReviews", arguments);
+                    string textReview = createUserReview_TextReview.Text;
                     insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "'" + currentReview[0] + "', '" + currentReview[1] + "', '" + textReview + "', " + yourScore);
                 }
             }
@@ -495,7 +506,7 @@ namespace _366Proj
                 yourScore = 0;
         }
 
-        private void viewUserReviews_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void viewUserReviews_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             currentReview[0] = viewUserReviews_dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(); // name
             currentReview[1] = viewUserReviews_dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString(); // platform
@@ -516,12 +527,193 @@ namespace _366Proj
             addNewGamePanel.Visible = false;
 
             // Clear all textboxes in the add new game panel
-            TextBox[] textBoxes = {title_textBox, Platform_textBox, Rank_textBox, genre_textBox, ESRB_textBox, publisherTextBox, developer_textBox, playerCount_textBox, ReleaseDate_textBox, year_textBox};
+            TextBox[] textBoxes = { title_textBox, Platform_textBox, Rank_textBox, genre_textBox, ESRB_textBox, publisherTextBox, developer_textBox, playerCount_textBox, ReleaseDate_textBox, year_textBox };
             foreach (TextBox textBox in textBoxes)
             {
                 textBox.Clear();
             }
             favorite_checkBox.Checked = false;  // Clear favorite checkbox in the add new game panel
+        }
+
+        private void insertNewGameIntoDB(string sqlite_stmt)
+        {
+            title_textBox.ReadOnly = false;
+            Platform_textBox.ReadOnly = false;
+            using (SQLiteConnection conn = new SQLiteConnection(connString))
+            {
+
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = @sqlite_stmt;
+                        cmd.Connection = conn;
+
+                        conn.Open();
+
+                        int i = cmd.ExecuteNonQuery();
+
+                        if (i == 1)
+                        {
+                            MessageBox.Show("Succesfully added game to database.");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        private bool checkIfGameExists(string name, string platform)
+        {
+            bool gameExists = true;
+            using (SQLiteConnection conn = new SQLiteConnection(connString))
+            {
+
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = @"SELECT " + name + " FROM Game WHERE Name = '" + name +"' AND Platform = '" + platform + "'";
+                        cmd.Connection = conn;
+
+                        conn.Open();
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        gameExists = false;
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        conn.Close();
+                    }
+                }
+            }
+            return gameExists;
+        }
+
+        private void addNewGame_Save_Click(object sender, EventArgs e)  // Insert a game into the database
+        {
+            createGameMode = 0;
+
+            // get info from every text box that will be a TEXT data type in the db
+            string[] gameInfo = new string[8];
+            gameInfo[0] = title_textBox.Text;
+            gameInfo[1] = Platform_textBox.Text;
+            gameInfo[2] = genre_textBox.Text;
+            gameInfo[3] = ESRB_textBox.Text;
+            gameInfo[4] = publisherTextBox.Text;
+            gameInfo[5] = developer_textBox.Text;
+            gameInfo[6] = playerCount_textBox.Text;
+            gameInfo[7] = ReleaseDate_textBox.Text;
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string s in gameInfo)
+            {
+                if (s != null)
+                {
+                    sb.Append("'" + s + "', ");    // appends ['(string)', ]
+                }
+                else
+                {
+                    sb.Append("'NULL', ");
+                }
+            }
+
+            // get rank
+            string gameRank = Rank_textBox.Text;
+            if (gameRank == "")
+            {
+                gameRank = "NULL";
+            }
+
+            // get year
+            string gameYear = year_textBox.Text;
+            if (gameYear == "")
+            {
+                gameYear = "NULL";
+            }
+            
+
+            //get favorite check box state
+            string favorite = "NULL";
+            if (favorite_checkBox.Checked == true)
+            {
+                favorite = "1";
+            }
+
+            // make sure that the game doesn't already exist
+            bool gameExists = checkIfGameExists(gameInfo[0], gameInfo[1]);
+
+            if (gameExists)
+            {
+                // First, Warn user that this will delete the existing review
+                DialogResult dialogResult = MessageBox.Show("A game with the same title and platform already exists in this database. Would you like to overwrite the existing entry with the input information?\n\n" +
+                    "WARNING: This action will permanetly delete the existing entry and will replace it replace it with your new entry.", "", MessageBoxButtons.OKCancel);
+                if(dialogResult == DialogResult.OK)
+                {
+                    // Delete old entry and insert the new one
+                    deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+
+                    string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
+                    MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
+                    insertNewGameIntoDB(sqlite_stmt);
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+
+        private void addNewGame_delete_Click(object sender, EventArgs e)
+        {
+
+            if (createGameMode == 1)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                string name = title_textBox.Text.ToString();
+                string platform = Platform_textBox.Text.ToString();
+
+                deleteDataFromTable("Game", "Name = '" + name + "' AND Platform = '" + platform + "'");
+            }
+
+            // Clear all textboxes in the add new game panel
+            TextBox[] textBoxes = { title_textBox, Platform_textBox, Rank_textBox, genre_textBox, ESRB_textBox, publisherTextBox, developer_textBox, playerCount_textBox, ReleaseDate_textBox, year_textBox };
+            foreach (TextBox textBox in textBoxes)
+            {
+                textBox.Clear();
+            }
+            favorite_checkBox.Checked = false;  // Clear favorite checkbox in the add new game panel
+        }
+
+        private void year_textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Rank_textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

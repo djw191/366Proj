@@ -25,9 +25,11 @@ namespace _366Proj
         // Bryce Variables
 
         int yourScore = 0;      // the score of the review being made/edited
-        string[] currentReview = { "", "", "" }; // [0] = name of game, [1] = platform of game, [2] = review text;
+        string[] selectedGame = new string[2];      // [0] = name of game, [1] = platform of game
+        string[] currentReview = { "", "", "" };    // [0] = name of game, [1] = platform of game, [2] = review text;
         int createReviewMode = 0;   // used for save button logic, 0 = create new review, 1 = edit existing review
         int createGameMode = 0;     // used for save button logic, 0 = create new review, 1 = edit existing review
+
 
         // End of Bryce Variables
 
@@ -193,11 +195,6 @@ namespace _366Proj
                 minMetascoreString = "m.metascore > " + Metascore.Value.ToString() + " AND ";
             string searchString = searchResultBox.Text;
             SearchHelper(searchString);
-        }
-
-        private void resultsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void Platform_SelectedIndexChanged(object sender, EventArgs e)
@@ -496,7 +493,7 @@ namespace _366Proj
             }
             viewUserReviewsPanel.Visible = true;
             createUserReviewsPanel.Visible = false;
-
+            getYourReviews();
         }
 
         private void createUserReview_score_dropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -525,7 +522,7 @@ namespace _366Proj
         {
             mainPagePanel.Visible = true;
             addNewGamePanel.Visible = false;
-
+            
             // Clear all textboxes in the add new game panel
             TextBox[] textBoxes = { title_textBox, Platform_textBox, Rank_textBox, genre_textBox, ESRB_textBox, publisherTextBox, developer_textBox, playerCount_textBox, ReleaseDate_textBox, year_textBox };
             foreach (TextBox textBox in textBoxes)
@@ -533,6 +530,14 @@ namespace _366Proj
                 textBox.Clear();
             }
             favorite_checkBox.Checked = false;  // Clear favorite checkbox in the add new game panel
+
+            if (createGameMode == 1)
+            {
+                mainPagePanel.Visible = false;
+                resultsPage.Visible = true;
+
+                SearchHelper(searchResultBox.Text);
+            }
         }
 
         private void insertNewGameIntoDB(string sqlite_stmt)
@@ -603,8 +608,6 @@ namespace _366Proj
 
         private void addNewGame_Save_Click(object sender, EventArgs e)  // Insert a game into the database
         {
-            createGameMode = 0;
-
             // get info from every text box that will be a TEXT data type in the db
             string[] gameInfo = new string[8];
             gameInfo[0] = title_textBox.Text;
@@ -656,21 +659,36 @@ namespace _366Proj
 
             if (gameExists)
             {
-                // First, Warn user that this will delete the existing review
-                DialogResult dialogResult = MessageBox.Show("A game with the same title and platform already exists in this database. Would you like to overwrite the existing entry with the input information?\n\n" +
-                    "WARNING: This action will permanetly delete the existing entry and will replace it replace it with your new entry.", "", MessageBoxButtons.OKCancel);
-                if(dialogResult == DialogResult.OK)
+                if (createGameMode == 0)
                 {
-                    // Delete old entry and insert the new one
-                    deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+                    // Warn user that this will delete the existing review
+                    DialogResult dialogResult = MessageBox.Show("A game with the title '" + gameInfo[0] + "' and for the " + gameInfo[1] + " already exists in this database. " +
+                        "Would you like to overwrite the existing entry with the input information?\n\n" +
+                        "WARNING: This action will permanetly delete the existing entry and will replace it replace it with your new entry.", "", MessageBoxButtons.OKCancel);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        // Delete old entry and insert the new one
+                        deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
 
-                    string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
-                    MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
-                    insertNewGameIntoDB(sqlite_stmt);
+                        string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
+                        MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
+                        insertNewGameIntoDB(sqlite_stmt);
+                    }
+                
                 }
-                else
+                else if (createGameMode == 1)
                 {
-                    
+                    // Ask the user if they are sure that they want to update the review
+                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to update the data of the game " + gameInfo[0] + " for " + gameInfo[1] + "?", "", MessageBoxButtons.OKCancel);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        // Delete old entry and insert the new one
+                        deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+
+                        string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
+                        MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
+                        insertNewGameIntoDB(sqlite_stmt);
+                    }
                 }
             }
         }
@@ -713,6 +731,79 @@ namespace _366Proj
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
+            }
+        }
+
+
+        private void editGameData_Click(object sender, EventArgs e)
+        {
+            createGameMode = 1;
+
+            resultsPage.Visible = false;
+            addNewGamePanel.Visible = true;
+
+            if (selectedGame[0] == null && selectedGame[1] == null)
+            {
+                selectedGame[0] = resultsGrid.Rows[0].Cells[0].Value.ToString();
+                selectedGame[1] = resultsGrid.Rows[0].Cells[1].Value.ToString();
+                retrieveGameInfo(selectedGame[0], selectedGame[1]);
+            }
+            else
+            {
+                retrieveGameInfo(selectedGame[0], selectedGame[1]);
+            }
+        }
+
+        private void resultsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                selectedGame[0] = resultsGrid.Rows[e.RowIndex].Cells[0].Value.ToString(); // name
+                selectedGame[1] = resultsGrid.Rows[e.RowIndex].Cells[1].Value.ToString(); // name
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void retrieveGameInfo(string Name, string Platform)
+        {
+            TextBox[] textBoxes = { title_textBox, Platform_textBox, genre_textBox, ESRB_textBox, publisherTextBox, developer_textBox, playerCount_textBox, ReleaseDate_textBox, };
+            using (SQLiteConnection conn = new SQLiteConnection(connString))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = @"SELECT Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year FROM Game WHERE Name = '" + Name + "' AND Platform = '" + Platform + "'";
+                        cmd.Connection = conn;
+                        conn.Open();
+
+                        // Read the selected info from the db
+                        SQLiteDataReader r = cmd.ExecuteReader();
+                        r.Read();
+
+                        // set strings
+                        for (int i = 0; i < textBoxes.Length - 1; i++)
+                        {
+                            textBoxes[i].Text = r.GetValue(i).ToString();
+                        }
+                        
+                        // set ints 
+                        Rank_textBox.Text = r.GetValue(8).ToString();
+                        year_textBox.Text = r.GetValue(9).ToString();
+                    }
+                    catch
+                    {
+                        
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        conn.Close();
+                    }
+                }
             }
         }
     }

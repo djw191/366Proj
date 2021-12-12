@@ -658,7 +658,7 @@ namespace _366Proj
                 favorite = "1";
             }
 
-            if (title_textBox.Text != "" && Platform.Text != "")
+            if (title_textBox.Text != "" && Platform_textBox.Text != "")
             {
                 // make sure that the game doesn't already exist
                 bool gameExists = checkIfGameExists(gameInfo[0], gameInfo[1]);

@@ -470,6 +470,10 @@ namespace _366Proj
                     string textReview = createUserReview_TextReview.Text;
                     insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "'" + newName + "', '" + newPlatform + "', '" + textReview + "', " + yourScore);
                 }
+                else
+                {
+                    MessageBox.Show("Please enter a name and platform for the game being reviewed.");
+                }
             }
             else
             {
@@ -654,42 +658,49 @@ namespace _366Proj
                 favorite = "1";
             }
 
-            // make sure that the game doesn't already exist
-            bool gameExists = checkIfGameExists(gameInfo[0], gameInfo[1]);
-
-            if (gameExists)
+            if (title_textBox.Text != "" && Platform.Text != "")
             {
-                if (createGameMode == 0)
-                {
-                    // Warn user that this will delete the existing review
-                    DialogResult dialogResult = MessageBox.Show("A game with the title '" + gameInfo[0] + "' and for the " + gameInfo[1] + " already exists in this database. " +
-                        "Would you like to overwrite the existing entry with the input information?\n\n" +
-                        "WARNING: This action will permanetly delete the existing entry and will replace it replace it with your new entry.", "", MessageBoxButtons.OKCancel);
-                    if (dialogResult == DialogResult.OK)
-                    {
-                        // Delete old entry and insert the new one
-                        deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+                // make sure that the game doesn't already exist
+                bool gameExists = checkIfGameExists(gameInfo[0], gameInfo[1]);
 
-                        string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
-                        MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
-                        insertNewGameIntoDB(sqlite_stmt);
-                    }
+                if (gameExists)
+                {
+                    if (createGameMode == 0)
+                    {
+                        // Warn user that this will delete the existing review
+                        DialogResult dialogResult = MessageBox.Show("A game with the title '" + gameInfo[0] + "' and for the " + gameInfo[1] + " already exists in this database. " +
+                            "Would you like to overwrite the existing entry with the input information?\n\n" +
+                            "WARNING: This action will permanetly delete the existing entry and will replace it replace it with your new entry.", "", MessageBoxButtons.OKCancel);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            // Delete old entry and insert the new one
+                            deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+
+                            string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
+                            MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
+                            insertNewGameIntoDB(sqlite_stmt);
+                        }
                 
-                }
-                else if (createGameMode == 1)
-                {
-                    // Ask the user if they are sure that they want to update the review
-                    DialogResult dialogResult = MessageBox.Show("Are you sure that you want to update the data of the game " + gameInfo[0] + " for " + gameInfo[1] + "?", "", MessageBoxButtons.OKCancel);
-                    if (dialogResult == DialogResult.OK)
+                    }
+                    else if (createGameMode == 1)
                     {
-                        // Delete old entry and insert the new one
-                        deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+                        // Ask the user if they are sure that they want to update the review
+                        DialogResult dialogResult = MessageBox.Show("Are you sure that you want to update the data of the game " + gameInfo[0] + " for " + gameInfo[1] + "?", "", MessageBoxButtons.OKCancel);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            // Delete old entry and insert the new one
+                            deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
 
-                        string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
-                        MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
-                        insertNewGameIntoDB(sqlite_stmt);
+                            string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
+                            MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
+                            insertNewGameIntoDB(sqlite_stmt);
+                        }
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("The game must have both a name and platform to be saved.");
             }
         }
 

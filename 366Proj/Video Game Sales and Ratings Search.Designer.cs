@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPagePanel = new System.Windows.Forms.TableLayoutPanel();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.search = new System.Windows.Forms.Button();
@@ -49,11 +49,11 @@
             this.Metascore = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.favorite = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.resultsGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.searchResultBox = new System.Windows.Forms.TextBox();
             this.resultSearchButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.createUserReviews_Back_Click = new System.Windows.Forms.Button();
             this.createUserReviews_Save = new System.Windows.Forms.Button();
             this.createUserReviews_Delete = new System.Windows.Forms.Button();
@@ -66,11 +66,13 @@
             this.viewUserReviewsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.viewUserReviews_dataGridView = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.viewUserReviews_NEW_REVIEW = new System.Windows.Forms.Button();
             this.viewUserReviews_EDIT_REVIEW = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.viewUserReviews_label = new System.Windows.Forms.Label();
             this.viewUserReviews_Back = new System.Windows.Forms.Button();
             this.addNewGamePanel = new System.Windows.Forms.Panel();
+            this.favorite_checkBox = new System.Windows.Forms.CheckBox();
             this.year_textBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -94,7 +96,6 @@
             this.addNewGame_Save = new System.Windows.Forms.Button();
             this.addNewGame_Back = new System.Windows.Forms.Button();
             this.title_textBox = new System.Windows.Forms.TextBox();
-            this.favorite_checkBox = new System.Windows.Forms.CheckBox();
             this.mainPagePanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.resultsPage.SuspendLayout();
@@ -236,9 +237,9 @@
             this.resultsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.resultsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.resultsPage.Controls.Add(this.tableLayoutPanel1, 0, 1);
-            this.resultsPage.Controls.Add(this.button1, 0, 0);
             this.resultsPage.Controls.Add(this.resultsGrid, 1, 1);
             this.resultsPage.Controls.Add(this.tableLayoutPanel3, 1, 0);
+            this.resultsPage.Controls.Add(this.button1, 0, 0);
             this.resultsPage.Location = new System.Drawing.Point(0, 0);
             this.resultsPage.Name = "resultsPage";
             this.resultsPage.RowCount = 2;
@@ -262,7 +263,7 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 139);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
@@ -270,6 +271,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(183, 539);
             this.tableLayoutPanel1.TabIndex = 2;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint_1);
@@ -280,7 +282,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 441);
+            this.label3.Location = new System.Drawing.Point(3, 424);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(177, 20);
             this.label3.TabIndex = 8;
@@ -369,7 +371,7 @@
             "Aco"});
             this.Platform.Location = new System.Drawing.Point(3, 3);
             this.Platform.Name = "Platform";
-            this.Platform.Size = new System.Drawing.Size(177, 204);
+            this.Platform.Size = new System.Drawing.Size(177, 196);
             this.Platform.TabIndex = 1;
             this.Platform.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.Platform_ItemCheck);
             this.Platform.SelectedIndexChanged += new System.EventHandler(this.Platform_SelectedIndexChanged);
@@ -388,9 +390,9 @@
             "EC",
             "AO",
             "KA"});
-            this.ESRB_Rating.Location = new System.Drawing.Point(3, 213);
+            this.ESRB_Rating.Location = new System.Drawing.Point(3, 205);
             this.ESRB_Rating.Name = "ESRB_Rating";
-            this.ESRB_Rating.Size = new System.Drawing.Size(177, 134);
+            this.ESRB_Rating.Size = new System.Drawing.Size(177, 128);
             this.ESRB_Rating.TabIndex = 2;
             this.ESRB_Rating.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ESRB_Rating_ItemCheck);
             // 
@@ -399,9 +401,9 @@
             this.VGChartzScore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.VGChartzScore.LargeChange = 1;
-            this.VGChartzScore.Location = new System.Drawing.Point(3, 390);
+            this.VGChartzScore.Location = new System.Drawing.Point(3, 375);
             this.VGChartzScore.Name = "VGChartzScore";
-            this.VGChartzScore.Size = new System.Drawing.Size(177, 31);
+            this.VGChartzScore.Size = new System.Drawing.Size(177, 30);
             this.VGChartzScore.TabIndex = 3;
             this.VGChartzScore.ValueChanged += new System.EventHandler(this.VGChartzScore_ValueChanged);
             // 
@@ -409,10 +411,10 @@
             // 
             this.Metascore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Metascore.Location = new System.Drawing.Point(3, 464);
+            this.Metascore.Location = new System.Drawing.Point(3, 447);
             this.Metascore.Maximum = 100;
             this.Metascore.Name = "Metascore";
-            this.Metascore.Size = new System.Drawing.Size(177, 31);
+            this.Metascore.Size = new System.Drawing.Size(177, 30);
             this.Metascore.TabIndex = 6;
             this.Metascore.ValueChanged += new System.EventHandler(this.Metascore_ValueChanged);
             // 
@@ -422,9 +424,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 350);
+            this.label2.Location = new System.Drawing.Point(3, 336);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(177, 37);
+            this.label2.Size = new System.Drawing.Size(177, 36);
             this.label2.TabIndex = 7;
             this.label2.Text = "Minimum VGChartz Score";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -434,25 +436,12 @@
             this.favorite.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.favorite.AutoSize = true;
             this.favorite.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.favorite.Location = new System.Drawing.Point(44, 506);
+            this.favorite.Location = new System.Drawing.Point(44, 486);
             this.favorite.Name = "favorite";
             this.favorite.Size = new System.Drawing.Size(94, 24);
             this.favorite.TabIndex = 9;
             this.favorite.Text = "Favorited";
             this.favorite.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(26, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 47);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "<- Back";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Back_Click);
             // 
             // resultsGrid
             // 
@@ -463,23 +452,23 @@
             this.resultsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.resultsGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.resultsGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.resultsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.resultsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.resultsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.resultsGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.resultsGrid.DefaultCellStyle = dataGridViewCellStyle18;
             this.resultsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resultsGrid.GridColor = System.Drawing.SystemColors.Window;
             this.resultsGrid.Location = new System.Drawing.Point(192, 139);
@@ -526,6 +515,19 @@
             this.resultSearchButton.Text = "Search";
             this.resultSearchButton.UseVisualStyleBackColor = true;
             this.resultSearchButton.Click += new System.EventHandler(this.resultSearch_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.AutoSize = true;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(26, 44);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 47);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "<- Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Back_Click);
             // 
             // createUserReviews_Back_Click
             // 
@@ -688,22 +690,22 @@
             this.viewUserReviews_dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.viewUserReviews_dataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.viewUserReviews_dataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.viewUserReviews_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.viewUserReviews_dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.viewUserReviews_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.viewUserReviews_dataGridView.DefaultCellStyle = dataGridViewCellStyle20;
             this.viewUserReviews_dataGridView.GridColor = System.Drawing.SystemColors.Window;
             this.viewUserReviews_dataGridView.Location = new System.Drawing.Point(192, 139);
             this.viewUserReviews_dataGridView.Name = "viewUserReviews_dataGridView";
@@ -717,26 +719,38 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.viewUserReviews_EDIT_REVIEW, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.viewUserReviews_NEW_REVIEW, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.viewUserReviews_EDIT_REVIEW, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 139);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.6679F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.3321F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.38961F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.61039F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(183, 539);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
+            // viewUserReviews_NEW_REVIEW
+            // 
+            this.viewUserReviews_NEW_REVIEW.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.viewUserReviews_NEW_REVIEW.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.viewUserReviews_NEW_REVIEW.Location = new System.Drawing.Point(3, 3);
+            this.viewUserReviews_NEW_REVIEW.Name = "viewUserReviews_NEW_REVIEW";
+            this.viewUserReviews_NEW_REVIEW.Size = new System.Drawing.Size(177, 47);
+            this.viewUserReviews_NEW_REVIEW.TabIndex = 7;
+            this.viewUserReviews_NEW_REVIEW.Text = "New Review";
+            this.viewUserReviews_NEW_REVIEW.UseVisualStyleBackColor = false;
+            this.viewUserReviews_NEW_REVIEW.Click += new System.EventHandler(this.viewUserReviews_NEW_REVIEW_Click);
+            // 
             // viewUserReviews_EDIT_REVIEW
             // 
-            this.viewUserReviews_EDIT_REVIEW.AutoSize = true;
             this.viewUserReviews_EDIT_REVIEW.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.viewUserReviews_EDIT_REVIEW.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.viewUserReviews_EDIT_REVIEW.Location = new System.Drawing.Point(3, 3);
+            this.viewUserReviews_EDIT_REVIEW.Location = new System.Drawing.Point(3, 58);
             this.viewUserReviews_EDIT_REVIEW.Name = "viewUserReviews_EDIT_REVIEW";
             this.viewUserReviews_EDIT_REVIEW.Size = new System.Drawing.Size(177, 47);
             this.viewUserReviews_EDIT_REVIEW.TabIndex = 6;
-            this.viewUserReviews_EDIT_REVIEW.Text = "Select";
+            this.viewUserReviews_EDIT_REVIEW.Text = "Edit Review";
             this.viewUserReviews_EDIT_REVIEW.UseVisualStyleBackColor = false;
             this.viewUserReviews_EDIT_REVIEW.Click += new System.EventHandler(this.viewUserReviews_EDIT_REVIEW_Click);
             // 
@@ -812,6 +826,17 @@
             this.addNewGamePanel.Size = new System.Drawing.Size(1264, 681);
             this.addNewGamePanel.TabIndex = 5;
             this.addNewGamePanel.Visible = false;
+            // 
+            // favorite_checkBox
+            // 
+            this.favorite_checkBox.AutoSize = true;
+            this.favorite_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.favorite_checkBox.Location = new System.Drawing.Point(377, 608);
+            this.favorite_checkBox.Name = "favorite_checkBox";
+            this.favorite_checkBox.Size = new System.Drawing.Size(132, 35);
+            this.favorite_checkBox.TabIndex = 11;
+            this.favorite_checkBox.Text = "Favorite";
+            this.favorite_checkBox.UseVisualStyleBackColor = true;
             // 
             // year_textBox
             // 
@@ -1055,27 +1080,16 @@
             this.title_textBox.Size = new System.Drawing.Size(884, 38);
             this.title_textBox.TabIndex = 1;
             // 
-            // favorite_checkBox
-            // 
-            this.favorite_checkBox.AutoSize = true;
-            this.favorite_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.favorite_checkBox.Location = new System.Drawing.Point(377, 608);
-            this.favorite_checkBox.Name = "favorite_checkBox";
-            this.favorite_checkBox.Size = new System.Drawing.Size(132, 35);
-            this.favorite_checkBox.TabIndex = 11;
-            this.favorite_checkBox.Text = "Favorite";
-            this.favorite_checkBox.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.mainPagePanel);
             this.Controls.Add(this.addNewGamePanel);
             this.Controls.Add(this.createUserReviewsPanel);
             this.Controls.Add(this.resultsPage);
             this.Controls.Add(this.viewUserReviewsPanel);
-            this.Controls.Add(this.mainPagePanel);
             this.MaximumSize = new System.Drawing.Size(1280, 720);
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "Form1";
@@ -1100,7 +1114,6 @@
             this.viewUserReviewsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewUserReviews_dataGridView)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.addNewGamePanel.ResumeLayout(false);
@@ -1128,7 +1141,6 @@
         private System.Windows.Forms.TrackBar VGChartzScore;
         private System.Windows.Forms.TrackBar Metascore;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox favorite;
         private System.Windows.Forms.DataGridView resultsGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button resultSearchButton;
@@ -1174,6 +1186,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox favorite_checkBox;
+        private System.Windows.Forms.CheckBox favorite;
+        private System.Windows.Forms.Button viewUserReviews_NEW_REVIEW;
     }
 }
 

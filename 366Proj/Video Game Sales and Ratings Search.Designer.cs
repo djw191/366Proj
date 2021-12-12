@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPagePanel = new System.Windows.Forms.TableLayoutPanel();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.search = new System.Windows.Forms.Button();
@@ -61,6 +61,10 @@
             this.createReviewPlatform = new System.Windows.Forms.Label();
             this.createUserReview_TextReview = new System.Windows.Forms.TextBox();
             this.createUserReviewsPanel = new System.Windows.Forms.Panel();
+            this.createReviewPlatform_Label = new System.Windows.Forms.Label();
+            this.createReviewGameTitle_Label = new System.Windows.Forms.Label();
+            this.createReviewPlatform_textBox = new System.Windows.Forms.TextBox();
+            this.createReviewGameTitle_textBox = new System.Windows.Forms.TextBox();
             this.createUserReview_score_dropdown = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.viewUserReviewsPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -69,6 +73,7 @@
             this.viewUserReviews_EDIT_REVIEW = new System.Windows.Forms.Button();
             this.viewUserReviews_NEW_REVIEW = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.viewUserReviews_label = new System.Windows.Forms.Label();
             this.viewUserReviews_Back = new System.Windows.Forms.Button();
             this.addNewGamePanel = new System.Windows.Forms.Panel();
             this.favorite_checkBox = new System.Windows.Forms.CheckBox();
@@ -95,11 +100,6 @@
             this.addNewGame_Save = new System.Windows.Forms.Button();
             this.addNewGame_Back = new System.Windows.Forms.Button();
             this.title_textBox = new System.Windows.Forms.TextBox();
-            this.viewUserReviews_label = new System.Windows.Forms.Label();
-            this.createReviewGameTitle_textBox = new System.Windows.Forms.TextBox();
-            this.createReviewPlatform_textBox = new System.Windows.Forms.TextBox();
-            this.createReviewGameTitle_Label = new System.Windows.Forms.Label();
-            this.createReviewPlatform_Label = new System.Windows.Forms.Label();
             this.mainPagePanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.resultsPage.SuspendLayout();
@@ -468,23 +468,23 @@
             this.resultsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.resultsGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.resultsGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.resultsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.resultsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.resultsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.resultsGrid.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.resultsGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.resultsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resultsGrid.GridColor = System.Drawing.SystemColors.Window;
             this.resultsGrid.Location = new System.Drawing.Point(192, 139);
@@ -628,12 +628,56 @@
             this.createUserReviewsPanel.Visible = false;
             this.createUserReviewsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createUserReviewsPanel_Paint);
             // 
+            // createReviewPlatform_Label
+            // 
+            this.createReviewPlatform_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.createReviewPlatform_Label.Location = new System.Drawing.Point(928, 52);
+            this.createReviewPlatform_Label.Name = "createReviewPlatform_Label";
+            this.createReviewPlatform_Label.Size = new System.Drawing.Size(168, 31);
+            this.createReviewPlatform_Label.TabIndex = 16;
+            this.createReviewPlatform_Label.Text = "Platform:";
+            this.createReviewPlatform_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.createReviewPlatform_Label.Visible = false;
+            // 
+            // createReviewGameTitle_Label
+            // 
+            this.createReviewGameTitle_Label.AutoSize = true;
+            this.createReviewGameTitle_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.createReviewGameTitle_Label.Location = new System.Drawing.Point(284, 53);
+            this.createReviewGameTitle_Label.Name = "createReviewGameTitle_Label";
+            this.createReviewGameTitle_Label.Size = new System.Drawing.Size(74, 31);
+            this.createReviewGameTitle_Label.TabIndex = 15;
+            this.createReviewGameTitle_Label.Text = "Title:";
+            this.createReviewGameTitle_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.createReviewGameTitle_Label.Visible = false;
+            // 
+            // createReviewPlatform_textBox
+            // 
+            this.createReviewPlatform_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.createReviewPlatform_textBox.Location = new System.Drawing.Point(1102, 49);
+            this.createReviewPlatform_textBox.MaxLength = 58;
+            this.createReviewPlatform_textBox.Name = "createReviewPlatform_textBox";
+            this.createReviewPlatform_textBox.Size = new System.Drawing.Size(159, 38);
+            this.createReviewPlatform_textBox.TabIndex = 2;
+            this.createReviewPlatform_textBox.Visible = false;
+            // 
+            // createReviewGameTitle_textBox
+            // 
+            this.createReviewGameTitle_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.createReviewGameTitle_textBox.Location = new System.Drawing.Point(364, 50);
+            this.createReviewGameTitle_textBox.MaxLength = 58;
+            this.createReviewGameTitle_textBox.Name = "createReviewGameTitle_textBox";
+            this.createReviewGameTitle_textBox.Size = new System.Drawing.Size(497, 38);
+            this.createReviewGameTitle_textBox.TabIndex = 1;
+            this.createReviewGameTitle_textBox.Visible = false;
+            // 
             // createUserReview_score_dropdown
             // 
             this.createUserReview_score_dropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.createUserReview_score_dropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.createUserReview_score_dropdown.FormattingEnabled = true;
             this.createUserReview_score_dropdown.Items.AddRange(new object[] {
+            "",
             "10",
             "9",
             "8",
@@ -697,22 +741,22 @@
             this.viewUserReviews_dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.viewUserReviews_dataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.viewUserReviews_dataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.viewUserReviews_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.viewUserReviews_dataGridView.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.viewUserReviews_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.viewUserReviews_dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.viewUserReviews_dataGridView.GridColor = System.Drawing.SystemColors.Window;
             this.viewUserReviews_dataGridView.Location = new System.Drawing.Point(192, 139);
             this.viewUserReviews_dataGridView.Name = "viewUserReviews_dataGridView";
@@ -774,6 +818,20 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1069, 130);
             this.tableLayoutPanel6.TabIndex = 4;
+            // 
+            // viewUserReviews_label
+            // 
+            this.viewUserReviews_label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewUserReviews_label.AutoSize = true;
+            this.viewUserReviews_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.viewUserReviews_label.Location = new System.Drawing.Point(3, 0);
+            this.viewUserReviews_label.Name = "viewUserReviews_label";
+            this.viewUserReviews_label.Size = new System.Drawing.Size(849, 130);
+            this.viewUserReviews_label.TabIndex = 0;
+            this.viewUserReviews_label.Text = "Your Reviews";
+            this.viewUserReviews_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // viewUserReviews_Back
             // 
@@ -1072,63 +1130,6 @@
             this.title_textBox.Name = "title_textBox";
             this.title_textBox.Size = new System.Drawing.Size(884, 38);
             this.title_textBox.TabIndex = 1;
-            // 
-            // viewUserReviews_label
-            // 
-            this.viewUserReviews_label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.viewUserReviews_label.AutoSize = true;
-            this.viewUserReviews_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.viewUserReviews_label.Location = new System.Drawing.Point(3, 0);
-            this.viewUserReviews_label.Name = "viewUserReviews_label";
-            this.viewUserReviews_label.Size = new System.Drawing.Size(849, 130);
-            this.viewUserReviews_label.TabIndex = 0;
-            this.viewUserReviews_label.Text = "Your Reviews";
-            this.viewUserReviews_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // createReviewGameTitle_textBox
-            // 
-            this.createReviewGameTitle_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.createReviewGameTitle_textBox.Location = new System.Drawing.Point(364, 50);
-            this.createReviewGameTitle_textBox.MaxLength = 58;
-            this.createReviewGameTitle_textBox.Name = "createReviewGameTitle_textBox";
-            this.createReviewGameTitle_textBox.Size = new System.Drawing.Size(497, 38);
-            this.createReviewGameTitle_textBox.TabIndex = 1;
-            this.createReviewGameTitle_textBox.Visible = false;
-            // 
-            // createReviewPlatform_textBox
-            // 
-            this.createReviewPlatform_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.createReviewPlatform_textBox.Location = new System.Drawing.Point(1102, 49);
-            this.createReviewPlatform_textBox.MaxLength = 58;
-            this.createReviewPlatform_textBox.Name = "createReviewPlatform_textBox";
-            this.createReviewPlatform_textBox.Size = new System.Drawing.Size(159, 38);
-            this.createReviewPlatform_textBox.TabIndex = 2;
-            this.createReviewPlatform_textBox.Visible = false;
-            // 
-            // createReviewGameTitle_Label
-            // 
-            this.createReviewGameTitle_Label.AutoSize = true;
-            this.createReviewGameTitle_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.createReviewGameTitle_Label.Location = new System.Drawing.Point(284, 53);
-            this.createReviewGameTitle_Label.Name = "createReviewGameTitle_Label";
-            this.createReviewGameTitle_Label.Size = new System.Drawing.Size(74, 31);
-            this.createReviewGameTitle_Label.TabIndex = 15;
-            this.createReviewGameTitle_Label.Text = "Title:";
-            this.createReviewGameTitle_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.createReviewGameTitle_Label.Visible = false;
-            // 
-            // createReviewPlatform_Label
-            // 
-            this.createReviewPlatform_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.createReviewPlatform_Label.Location = new System.Drawing.Point(928, 52);
-            this.createReviewPlatform_Label.Name = "createReviewPlatform_Label";
-            this.createReviewPlatform_Label.Size = new System.Drawing.Size(168, 31);
-            this.createReviewPlatform_Label.TabIndex = 16;
-            this.createReviewPlatform_Label.Text = "Platform:";
-            this.createReviewPlatform_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.createReviewPlatform_Label.Visible = false;
             // 
             // Form1
             // 

@@ -256,7 +256,7 @@ namespace _366Proj
             }
         }
 
-        private void setReviewText(string Name, string Platform)    // used for filling textbox when user opens an existing review
+        private void setReviewValues(String Name, String Platform)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connString))
             {
@@ -268,9 +268,11 @@ namespace _366Proj
                         cmd.Connection = conn;
                         conn.Open();
 
+                        // Read the selected info from the db and store it
                         SQLiteDataReader r = cmd.ExecuteReader();
                         r.Read();
                         currentReview[2] = r.GetValue(2).ToString();    // review text
+                        yourScore = r.GetInt32(3);
                     }
                     catch (Exception e)
                     {
@@ -359,8 +361,7 @@ namespace _366Proj
 
         private void getYourReviews()
         {
-            PopulateAnyTable("SELECT Name, Platform, yourScore " +
-                "FROM YourReviews", viewUserReviews_dataGridView);
+            PopulateAnyTable("SELECT Name, Platform, yourScore FROM YourReviews", viewUserReviews_dataGridView);
         }
 
         private void view_Click_1(object sender, EventArgs e)                   // main panel -> "view your reviews" button
@@ -390,14 +391,19 @@ namespace _366Proj
             createReviewPlatform_Label.Visible = true;
             createReviewPlatform_textBox.Visible = true;
 
-            createReviewGameTitle.Text = "";
-            createReviewPlatform.Text = "";
+            createReviewGameTitle_textBox.Clear();
+            createReviewPlatform_textBox.Clear();
             createUserReview_TextReview.Clear();
+
+            // Set score dropdown value to be blank
+            yourScore = 0;
+            createUserReview_score_dropdown.SelectedIndex = 0;
         }
 
         private void viewUserReviews_EDIT_REVIEW_Click(object sender, EventArgs e)
         {
             createReviewMode = 1;
+
             if (currentReview[0] != "" && currentReview[1] != "")
             {
                 viewUserReviewsPanel.Visible = false;
@@ -409,6 +415,16 @@ namespace _366Proj
                 createUserReview_TextReview.Text = currentReview[2];
                 createReviewGameTitle.Refresh();
 
+                // Set score dropdown value to the score saved on the database
+                int scoreIndex = 11 - yourScore;
+                if (0 > scoreIndex || scoreIndex > 10)
+                {
+                    createUserReview_score_dropdown.SelectedIndex = 0;
+                }
+                else
+                {
+                    createUserReview_score_dropdown.SelectedIndex = scoreIndex;
+                }
 
             }
         }
@@ -439,14 +455,13 @@ namespace _366Proj
                 string newName = createReviewGameTitle_textBox.Text.ToString();
                 string newPlatform = createReviewPlatform_textBox.Text.ToString();
 
-                MessageBox.Show("Name: " + newName + " Platform: " + newPlatform);
 
                 if (newName != "" && newPlatform != "")
                 {
                     // first delete the old review (if it exists), then insert the new one
                     deleteDataFromTable("YourReviews", "Name = '" + newName + "' AND Platform = '" + newPlatform + "'");
                     String textReview = createUserReview_TextReview.Text;
-                    insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "'" + currentReview[0] + "', '" + currentReview[1] + "', '" + textReview + "', " + yourScore);
+                    insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "'" + newName + "', '" + newPlatform + "', '" + textReview + "', " + yourScore);
                 }
             }
             else
@@ -468,12 +483,16 @@ namespace _366Proj
             {
                 deleteDataFromTable("YourReviews", "Name = '" + currentReview[0] + "' AND Platform = '" + currentReview[1] + "'");
             }
-            //createUserReviews_Back();
+            viewUserReviewsPanel.Visible = true;
+            createUserReviewsPanel.Visible = false;
+
         }
 
         private void createUserReview_score_dropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            yourScore = 10 - createUserReview_score_dropdown.SelectedIndex;     // gets the number that the user selected from the dropdown list
+            yourScore = 11 - createUserReview_score_dropdown.SelectedIndex;     // gets the number that the user selected from the dropdown list
+            if (yourScore == 11)
+                yourScore = 0;
         }
 
         private void viewUserReviews_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -482,7 +501,7 @@ namespace _366Proj
             currentReview[1] = viewUserReviews_dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString(); // platform
             currentReview[2] = viewUserReviews_dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString(); // review text
 
-            setReviewText(currentReview[0], currentReview[1]);
+            setReviewValues(currentReview[0], currentReview[1]);
         }
 
         private void add_Click(object sender, EventArgs e)  // main panel -> add new game button

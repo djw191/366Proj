@@ -70,6 +70,31 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.viewUserReviews_label = new System.Windows.Forms.Label();
             this.viewUserReviews_Back = new System.Windows.Forms.Button();
+            this.addNewGamePanel = new System.Windows.Forms.Panel();
+            this.year_textBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Rank_Label = new System.Windows.Forms.Label();
+            this.Platform_Label = new System.Windows.Forms.Label();
+            this.playerCount_textBox = new System.Windows.Forms.TextBox();
+            this.developer_textBox = new System.Windows.Forms.TextBox();
+            this.publisherTextBox = new System.Windows.Forms.TextBox();
+            this.ESRB_textBox = new System.Windows.Forms.TextBox();
+            this.genre_textBox = new System.Windows.Forms.TextBox();
+            this.ReleaseDate_textBox = new System.Windows.Forms.TextBox();
+            this.Rank_textBox = new System.Windows.Forms.TextBox();
+            this.Platform_textBox = new System.Windows.Forms.TextBox();
+            this.Title_Label = new System.Windows.Forms.Label();
+            this.addNewGame_delete = new System.Windows.Forms.Button();
+            this.addNewGame_Save = new System.Windows.Forms.Button();
+            this.addNewGame_Back = new System.Windows.Forms.Button();
+            this.title_textBox = new System.Windows.Forms.TextBox();
+            this.favorite_checkBox = new System.Windows.Forms.CheckBox();
             this.mainPagePanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.resultsPage.SuspendLayout();
@@ -83,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.viewUserReviews_dataGridView)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.addNewGamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPagePanel
@@ -199,6 +225,7 @@
             this.add.TabIndex = 0;
             this.add.Text = "Add a New Game";
             this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // resultsPage
             // 
@@ -519,7 +546,7 @@
             this.createUserReviews_Save.AutoSize = true;
             this.createUserReviews_Save.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.createUserReviews_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.createUserReviews_Save.Location = new System.Drawing.Point(3, 550);
+            this.createUserReviews_Save.Location = new System.Drawing.Point(6, 562);
             this.createUserReviews_Save.Name = "createUserReviews_Save";
             this.createUserReviews_Save.Size = new System.Drawing.Size(183, 47);
             this.createUserReviews_Save.TabIndex = 7;
@@ -533,7 +560,7 @@
             this.createUserReviews_Delete.AutoSize = true;
             this.createUserReviews_Delete.BackColor = System.Drawing.Color.IndianRed;
             this.createUserReviews_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.createUserReviews_Delete.Location = new System.Drawing.Point(3, 603);
+            this.createUserReviews_Delete.Location = new System.Drawing.Point(6, 615);
             this.createUserReviews_Delete.Name = "createUserReviews_Delete";
             this.createUserReviews_Delete.Size = new System.Drawing.Size(183, 47);
             this.createUserReviews_Delete.TabIndex = 8;
@@ -694,28 +721,23 @@
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 139);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 7;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.6679F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.3321F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(183, 539);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // viewUserReviews_EDIT_REVIEW
             // 
             this.viewUserReviews_EDIT_REVIEW.AutoSize = true;
-            this.viewUserReviews_EDIT_REVIEW.Dock = System.Windows.Forms.DockStyle.Top;
+            this.viewUserReviews_EDIT_REVIEW.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.viewUserReviews_EDIT_REVIEW.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.viewUserReviews_EDIT_REVIEW.Location = new System.Drawing.Point(3, 3);
             this.viewUserReviews_EDIT_REVIEW.Name = "viewUserReviews_EDIT_REVIEW";
             this.viewUserReviews_EDIT_REVIEW.Size = new System.Drawing.Size(177, 47);
             this.viewUserReviews_EDIT_REVIEW.TabIndex = 6;
-            this.viewUserReviews_EDIT_REVIEW.Text = "Edit Review";
-            this.viewUserReviews_EDIT_REVIEW.UseVisualStyleBackColor = true;
+            this.viewUserReviews_EDIT_REVIEW.Text = "Select";
+            this.viewUserReviews_EDIT_REVIEW.UseVisualStyleBackColor = false;
             this.viewUserReviews_EDIT_REVIEW.Click += new System.EventHandler(this.viewUserReviews_EDIT_REVIEW_Click);
             // 
             // tableLayoutPanel6
@@ -759,15 +781,301 @@
             this.viewUserReviews_Back.UseVisualStyleBackColor = true;
             this.viewUserReviews_Back.Click += new System.EventHandler(this.viewUserReviews_Back_Click);
             // 
+            // addNewGamePanel
+            // 
+            this.addNewGamePanel.Controls.Add(this.favorite_checkBox);
+            this.addNewGamePanel.Controls.Add(this.year_textBox);
+            this.addNewGamePanel.Controls.Add(this.label6);
+            this.addNewGamePanel.Controls.Add(this.label11);
+            this.addNewGamePanel.Controls.Add(this.label10);
+            this.addNewGamePanel.Controls.Add(this.label8);
+            this.addNewGamePanel.Controls.Add(this.label9);
+            this.addNewGamePanel.Controls.Add(this.label7);
+            this.addNewGamePanel.Controls.Add(this.label5);
+            this.addNewGamePanel.Controls.Add(this.Rank_Label);
+            this.addNewGamePanel.Controls.Add(this.Platform_Label);
+            this.addNewGamePanel.Controls.Add(this.playerCount_textBox);
+            this.addNewGamePanel.Controls.Add(this.developer_textBox);
+            this.addNewGamePanel.Controls.Add(this.publisherTextBox);
+            this.addNewGamePanel.Controls.Add(this.ESRB_textBox);
+            this.addNewGamePanel.Controls.Add(this.genre_textBox);
+            this.addNewGamePanel.Controls.Add(this.ReleaseDate_textBox);
+            this.addNewGamePanel.Controls.Add(this.Rank_textBox);
+            this.addNewGamePanel.Controls.Add(this.Platform_textBox);
+            this.addNewGamePanel.Controls.Add(this.Title_Label);
+            this.addNewGamePanel.Controls.Add(this.addNewGame_delete);
+            this.addNewGamePanel.Controls.Add(this.addNewGame_Save);
+            this.addNewGamePanel.Controls.Add(this.addNewGame_Back);
+            this.addNewGamePanel.Controls.Add(this.title_textBox);
+            this.addNewGamePanel.Location = new System.Drawing.Point(0, 0);
+            this.addNewGamePanel.Name = "addNewGamePanel";
+            this.addNewGamePanel.Size = new System.Drawing.Size(1264, 681);
+            this.addNewGamePanel.TabIndex = 5;
+            this.addNewGamePanel.Visible = false;
+            // 
+            // year_textBox
+            // 
+            this.year_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.year_textBox.Location = new System.Drawing.Point(377, 564);
+            this.year_textBox.MaxLength = 4;
+            this.year_textBox.Name = "year_textBox";
+            this.year_textBox.Size = new System.Drawing.Size(132, 38);
+            this.year_textBox.TabIndex = 10;
+            this.year_textBox.WordWrap = false;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label6.Location = new System.Drawing.Point(146, 251);
+            this.label6.Margin = new System.Windows.Forms.Padding(3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(225, 31);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "Release Date:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label11.Location = new System.Drawing.Point(186, 514);
+            this.label11.Margin = new System.Windows.Forms.Padding(3);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(185, 31);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "Player Count:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label10.Location = new System.Drawing.Point(186, 461);
+            this.label10.Margin = new System.Windows.Forms.Padding(3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(185, 31);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Developer:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label8.Location = new System.Drawing.Point(186, 408);
+            this.label8.Margin = new System.Windows.Forms.Padding(3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(185, 31);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Publisher:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label9.Location = new System.Drawing.Point(189, 355);
+            this.label9.Margin = new System.Windows.Forms.Padding(3);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(185, 31);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "ESRB Rating:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label7.Location = new System.Drawing.Point(183, 304);
+            this.label7.Margin = new System.Windows.Forms.Padding(3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(188, 31);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Genre:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label5.Location = new System.Drawing.Point(213, 567);
+            this.label5.Margin = new System.Windows.Forms.Padding(3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 31);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Year:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Rank_Label
+            // 
+            this.Rank_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.Rank_Label.Location = new System.Drawing.Point(186, 198);
+            this.Rank_Label.Margin = new System.Windows.Forms.Padding(3);
+            this.Rank_Label.Name = "Rank_Label";
+            this.Rank_Label.Size = new System.Drawing.Size(185, 31);
+            this.Rank_Label.TabIndex = 22;
+            this.Rank_Label.Text = "Rank:";
+            this.Rank_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Platform_Label
+            // 
+            this.Platform_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.Platform_Label.Location = new System.Drawing.Point(186, 145);
+            this.Platform_Label.Margin = new System.Windows.Forms.Padding(3);
+            this.Platform_Label.Name = "Platform_Label";
+            this.Platform_Label.Size = new System.Drawing.Size(185, 31);
+            this.Platform_Label.TabIndex = 21;
+            this.Platform_Label.Text = "Platform:";
+            this.Platform_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // playerCount_textBox
+            // 
+            this.playerCount_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.playerCount_textBox.Location = new System.Drawing.Point(377, 511);
+            this.playerCount_textBox.MaxLength = 58;
+            this.playerCount_textBox.Name = "playerCount_textBox";
+            this.playerCount_textBox.Size = new System.Drawing.Size(884, 38);
+            this.playerCount_textBox.TabIndex = 9;
+            // 
+            // developer_textBox
+            // 
+            this.developer_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.developer_textBox.Location = new System.Drawing.Point(377, 458);
+            this.developer_textBox.MaxLength = 58;
+            this.developer_textBox.Name = "developer_textBox";
+            this.developer_textBox.Size = new System.Drawing.Size(884, 38);
+            this.developer_textBox.TabIndex = 8;
+            // 
+            // publisherTextBox
+            // 
+            this.publisherTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.publisherTextBox.Location = new System.Drawing.Point(377, 405);
+            this.publisherTextBox.MaxLength = 58;
+            this.publisherTextBox.Name = "publisherTextBox";
+            this.publisherTextBox.Size = new System.Drawing.Size(884, 38);
+            this.publisherTextBox.TabIndex = 7;
+            // 
+            // ESRB_textBox
+            // 
+            this.ESRB_textBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.ESRB_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.ESRB_textBox.Location = new System.Drawing.Point(377, 352);
+            this.ESRB_textBox.MaxLength = 58;
+            this.ESRB_textBox.Name = "ESRB_textBox";
+            this.ESRB_textBox.Size = new System.Drawing.Size(884, 38);
+            this.ESRB_textBox.TabIndex = 6;
+            // 
+            // genre_textBox
+            // 
+            this.genre_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.genre_textBox.Location = new System.Drawing.Point(377, 301);
+            this.genre_textBox.MaxLength = 58;
+            this.genre_textBox.Name = "genre_textBox";
+            this.genre_textBox.Size = new System.Drawing.Size(884, 38);
+            this.genre_textBox.TabIndex = 5;
+            // 
+            // ReleaseDate_textBox
+            // 
+            this.ReleaseDate_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.ReleaseDate_textBox.Location = new System.Drawing.Point(377, 248);
+            this.ReleaseDate_textBox.MaxLength = 58;
+            this.ReleaseDate_textBox.Name = "ReleaseDate_textBox";
+            this.ReleaseDate_textBox.Size = new System.Drawing.Size(884, 38);
+            this.ReleaseDate_textBox.TabIndex = 4;
+            // 
+            // Rank_textBox
+            // 
+            this.Rank_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.Rank_textBox.Location = new System.Drawing.Point(377, 195);
+            this.Rank_textBox.MaxLength = 58;
+            this.Rank_textBox.Name = "Rank_textBox";
+            this.Rank_textBox.Size = new System.Drawing.Size(884, 38);
+            this.Rank_textBox.TabIndex = 3;
+            // 
+            // Platform_textBox
+            // 
+            this.Platform_textBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.Platform_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.Platform_textBox.Location = new System.Drawing.Point(377, 142);
+            this.Platform_textBox.MaxLength = 58;
+            this.Platform_textBox.Name = "Platform_textBox";
+            this.Platform_textBox.Size = new System.Drawing.Size(884, 38);
+            this.Platform_textBox.TabIndex = 2;
+            // 
+            // Title_Label
+            // 
+            this.Title_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.Title_Label.Location = new System.Drawing.Point(192, 53);
+            this.Title_Label.Margin = new System.Windows.Forms.Padding(3);
+            this.Title_Label.Name = "Title_Label";
+            this.Title_Label.Size = new System.Drawing.Size(179, 31);
+            this.Title_Label.TabIndex = 0;
+            this.Title_Label.Text = "Title:";
+            this.Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // addNewGame_delete
+            // 
+            this.addNewGame_delete.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addNewGame_delete.AutoSize = true;
+            this.addNewGame_delete.BackColor = System.Drawing.Color.IndianRed;
+            this.addNewGame_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.addNewGame_delete.Location = new System.Drawing.Point(6, 615);
+            this.addNewGame_delete.Name = "addNewGame_delete";
+            this.addNewGame_delete.Size = new System.Drawing.Size(183, 47);
+            this.addNewGame_delete.TabIndex = 13;
+            this.addNewGame_delete.Text = "Delete";
+            this.addNewGame_delete.UseVisualStyleBackColor = false;
+            // 
+            // addNewGame_Save
+            // 
+            this.addNewGame_Save.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addNewGame_Save.AutoSize = true;
+            this.addNewGame_Save.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.addNewGame_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.addNewGame_Save.Location = new System.Drawing.Point(6, 562);
+            this.addNewGame_Save.Name = "addNewGame_Save";
+            this.addNewGame_Save.Size = new System.Drawing.Size(183, 47);
+            this.addNewGame_Save.TabIndex = 12;
+            this.addNewGame_Save.Text = "Save";
+            this.addNewGame_Save.UseVisualStyleBackColor = false;
+            // 
+            // addNewGame_Back
+            // 
+            this.addNewGame_Back.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addNewGame_Back.AutoSize = true;
+            this.addNewGame_Back.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNewGame_Back.Location = new System.Drawing.Point(26, 44);
+            this.addNewGame_Back.Name = "addNewGame_Back";
+            this.addNewGame_Back.Size = new System.Drawing.Size(136, 47);
+            this.addNewGame_Back.TabIndex = 0;
+            this.addNewGame_Back.Text = "<- Back";
+            this.addNewGame_Back.UseVisualStyleBackColor = true;
+            this.addNewGame_Back.Click += new System.EventHandler(this.addNewGame_Back_Click);
+            // 
+            // title_textBox
+            // 
+            this.title_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.title_textBox.Location = new System.Drawing.Point(377, 49);
+            this.title_textBox.MaxLength = 58;
+            this.title_textBox.Name = "title_textBox";
+            this.title_textBox.Size = new System.Drawing.Size(884, 38);
+            this.title_textBox.TabIndex = 1;
+            // 
+            // favorite_checkBox
+            // 
+            this.favorite_checkBox.AutoSize = true;
+            this.favorite_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.favorite_checkBox.Location = new System.Drawing.Point(377, 608);
+            this.favorite_checkBox.Name = "favorite_checkBox";
+            this.favorite_checkBox.Size = new System.Drawing.Size(132, 35);
+            this.favorite_checkBox.TabIndex = 11;
+            this.favorite_checkBox.Text = "Favorite";
+            this.favorite_checkBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.viewUserReviewsPanel);
-            this.Controls.Add(this.mainPagePanel);
+            this.Controls.Add(this.addNewGamePanel);
             this.Controls.Add(this.createUserReviewsPanel);
             this.Controls.Add(this.resultsPage);
+            this.Controls.Add(this.viewUserReviewsPanel);
+            this.Controls.Add(this.mainPagePanel);
             this.MaximumSize = new System.Drawing.Size(1280, 720);
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "Form1";
@@ -795,6 +1103,8 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.addNewGamePanel.ResumeLayout(false);
+            this.addNewGamePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -839,6 +1149,31 @@
         private System.Windows.Forms.Button viewUserReviews_EDIT_REVIEW;
         private System.Windows.Forms.ComboBox createUserReview_score_dropdown;
         private System.Windows.Forms.DataGridView viewUserReviews_dataGridView;
+        private System.Windows.Forms.Panel addNewGamePanel;
+        private System.Windows.Forms.TextBox Rank_textBox;
+        private System.Windows.Forms.TextBox Platform_textBox;
+        private System.Windows.Forms.Button addNewGame_delete;
+        private System.Windows.Forms.Button addNewGame_Save;
+        private System.Windows.Forms.Button addNewGame_Back;
+        private System.Windows.Forms.TextBox playerCount_textBox;
+        private System.Windows.Forms.TextBox developer_textBox;
+        private System.Windows.Forms.TextBox publisherTextBox;
+        private System.Windows.Forms.TextBox ESRB_textBox;
+        private System.Windows.Forms.TextBox genre_textBox;
+        private System.Windows.Forms.TextBox ReleaseDate_textBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label Rank_Label;
+        private System.Windows.Forms.Label Platform_Label;
+        private System.Windows.Forms.Label Title_Label;
+        private System.Windows.Forms.TextBox title_textBox;
+        private System.Windows.Forms.TextBox year_textBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox favorite_checkBox;
     }
 }
 

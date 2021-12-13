@@ -57,9 +57,11 @@ namespace _366Proj
         }
         private void SearchHelper(string search)
         {
-            PopulateTable("SELECT g.name, g.Platform, g.genre, g.ESRB_Rating, v.VGChartzscore, m.metascore, s.global_sales, g.Favorited FROM Game g LEFT JOIN VGChartzScore v ON g.name = v.name AND g.platform = v.platform " +
+            if (search.Contains('"')) //the " character breaks this implementation, no time to do properly
+                return;
+            PopulateTable("SELECT g.name, g.Platform, g.genre, g.ESRB_Rating, v.VGChartzscore, m.metascore, s.global_sales FROM Game g LEFT JOIN VGChartzScore v ON g.name = v.name AND g.platform = v.platform " +
                     "LEFT JOIN ScoreMetacritic m ON g.name = m.name AND g.platform = m.platform " +
-                    "LEFT JOIN Shipped s ON g.name = s.name AND g.platform = s.platform WHERE " + platformString + ratingString + minVGChartzScoreString + minMetascoreString + " g.name LIKE '%" + search + "%' ORDER BY s.global_sales DESC");
+                    "LEFT JOIN Shipped s ON g.name = s.name AND g.platform = s.platform WHERE " + platformString + ratingString + minVGChartzScoreString + minMetascoreString + " g.name LIKE \"%" + search + "%\" ORDER BY s.global_sales DESC LIMIT 500");
         }
         private void searchBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -142,9 +144,9 @@ namespace _366Proj
                 for (int i = 0; i < checkedItems.Count; i++)
                 {
                     if (i == 0)
-                        platformString = "(g.platform = '" + checkedItems[0] + "'";
+                        platformString = "(g.platform = \"" + checkedItems[0] + "\"";
                     else
-                        platformString += " OR g.platform = '" + checkedItems[i] + "'";
+                        platformString += " OR g.platform = \"" + checkedItems[i] + "\"";
                 }
                 platformString += ") AND ";
             }
@@ -167,9 +169,9 @@ namespace _366Proj
                 for (int i = 0; i < checkedItems.Count; i++)
                 {
                     if (i == 0)
-                        ratingString = "(g.ESRB_Rating = '" + checkedItems[0] + "'";
+                        ratingString = "(g.ESRB_Rating = \"" + checkedItems[0] + "\"";
                     else
-                        ratingString += " OR g.ESRB_Rating = '" + checkedItems[i] + "'";
+                        ratingString += " OR g.ESRB_Rating = \"" + checkedItems[i] + "\"";
                 }
                 ratingString += ") AND ";
             }
@@ -189,12 +191,7 @@ namespace _366Proj
 
         private void Metascore_ValueChanged(object sender, EventArgs e)
         {
-            if (Metascore.Value == 0)
-                minMetascoreString = "";
-            else
-                minMetascoreString = "m.metascore > " + Metascore.Value.ToString() + " AND ";
-            string searchString = searchResultBox.Text;
-            SearchHelper(searchString);
+
         }
 
         private void Platform_SelectedIndexChanged(object sender, EventArgs e)
@@ -212,7 +209,7 @@ namespace _366Proj
                     try
                     {
                         conn.Open();
-                        fmd.CommandText = "SELECT v.url FROM Game g LEFT JOIN VGChartzScore v ON g.name = v.name AND g.platform = v.platform WHERE g.name = '" + resultsGrid.Rows[e.RowIndex].Cells[0].Value + "' AND g.platform = '" + resultsGrid.Rows[e.RowIndex].Cells[1].Value + "'";
+                        fmd.CommandText = "SELECT v.url FROM Game g LEFT JOIN VGChartzScore v ON g.name = v.name AND g.platform = v.platform WHERE g.name = \"" + resultsGrid.Rows[e.RowIndex].Cells[0].Value + "\" AND g.platform = \"" + resultsGrid.Rows[e.RowIndex].Cells[1].Value + "\"";
                         fmd.CommandType = CommandType.Text;
                         SQLiteDataReader r = fmd.ExecuteReader();
                         r.Read();
@@ -271,7 +268,7 @@ namespace _366Proj
                 {
                     try
                     {
-                        cmd.CommandText = @"SELECT Name, Platform, yourReview, yourScore FROM YourReviews WHERE Name = '" + Name + "' AND Platform = '" + Platform + "'";
+                        cmd.CommandText = "SELECT Name, Platform, yourReview, yourScore FROM YourReviews WHERE Name = \"" + Name + "\" AND Platform = \"" + Platform + "\"";
                         cmd.Connection = conn;
                         conn.Open();
 
@@ -307,7 +304,7 @@ namespace _366Proj
                 {
                     try
                     {
-                        cmd.CommandText = @"INSERT INTO " + table + " (" + column + ") VALUES (" + inputData + ")";
+                        cmd.CommandText = "INSERT INTO " + table + " (" + column + ") VALUES (" + inputData + ")";
                         cmd.Connection = conn;
 
                         conn.Open();
@@ -341,7 +338,7 @@ namespace _366Proj
                 {
                     try
                     {
-                        cmd.CommandText = @"DELETE FROM " + table + " WHERE " + statement;
+                        cmd.CommandText = "DELETE FROM " + table + " WHERE " + statement;
                         cmd.Connection = conn;
 
                         conn.Open();
@@ -465,10 +462,10 @@ namespace _366Proj
                 if (newName != "" && newPlatform != "")
                 {
                     // first delete the old review (if it exists), then insert the new one
-                    string arguments = "Name = '" + newName + "' AND Platform = '" + newPlatform + "'";
+                    string arguments = "Name = \"" + newName + "\" AND Platform = \"" + newPlatform + "\"";
                     deleteDataFromTable("YourReviews", arguments);
                     string textReview = createUserReview_TextReview.Text;
-                    insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "'" + newName + "', '" + newPlatform + "', '" + textReview + "', " + yourScore);
+                    insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "\"" + newName + "\", \"" + newPlatform + "\", \"" + textReview + "\", " + yourScore);
                 }
                 else
                 {
@@ -480,10 +477,10 @@ namespace _366Proj
                 if (currentReview[0] != "" && currentReview[1] != "")
                 {
                     // first delete the old review, then insert the new one
-                    string arguments = "Name = '" + currentReview[0] + "' AND Platform = '" + currentReview[1] + "'";
+                    string arguments = "Name = \"" + currentReview[0] + "\" AND Platform = \"" + currentReview[1] + "\"";
                     deleteDataFromTable("YourReviews", arguments);
                     string textReview = createUserReview_TextReview.Text;
-                    insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "'" + currentReview[0] + "', '" + currentReview[1] + "', '" + textReview + "', " + yourScore);
+                    insertDataIntoTable("YourReviews", "Name, Platform, yourReview, yourScore", "\"" + currentReview[0] + "\", \"" + currentReview[1] + "\", \"" + textReview + "\", " + yourScore);
                 }
             }
         }
@@ -493,7 +490,7 @@ namespace _366Proj
             // Could improve this by making a function specificially for YourReviews
             if (currentReview[0] != "" && currentReview[1] != "")
             {
-                deleteDataFromTable("YourReviews", "Name = '" + currentReview[0] + "' AND Platform = '" + currentReview[1] + "'");
+                deleteDataFromTable("YourReviews", "Name = \"" + currentReview[0] + "\" AND Platform = \"" + currentReview[1] + "\"");
             }
             viewUserReviewsPanel.Visible = true;
             createUserReviewsPanel.Visible = false;
@@ -555,7 +552,7 @@ namespace _366Proj
                 {
                     try
                     {
-                        cmd.CommandText = @sqlite_stmt;
+                        cmd.CommandText = sqlite_stmt;
                         cmd.Connection = conn;
 
                         conn.Open();
@@ -590,7 +587,7 @@ namespace _366Proj
                 {
                     try
                     {
-                        cmd.CommandText = @"SELECT " + name + " FROM Game WHERE Name = '" + name +"' AND Platform = '" + platform + "'";
+                        cmd.CommandText = "SELECT " + name + " FROM Game WHERE Name = \"" + name + "\" AND Platform = \"" + platform + "\"";
                         cmd.Connection = conn;
 
                         conn.Open();
@@ -628,11 +625,11 @@ namespace _366Proj
             {
                 if (s != null)
                 {
-                    sb.Append("'" + s + "', ");    // appends ['(string)', ]
+                    sb.Append("\"" + s + "\", ");    // appends ['(string)', ]
                 }
                 else
                 {
-                    sb.Append("'NULL', ");
+                    sb.Append("\"NULL\", ");
                 }
             }
 
@@ -668,13 +665,13 @@ namespace _366Proj
                     if (createGameMode == 0)
                     {
                         // Warn user that this will delete the existing review
-                        DialogResult dialogResult = MessageBox.Show("A game with the title '" + gameInfo[0] + "' and for the " + gameInfo[1] + " already exists in this database. " +
+                        DialogResult dialogResult = MessageBox.Show("A game with the title \"" + gameInfo[0] + "\" and for the " + gameInfo[1] + " already exists in this database. " +
                             "Would you like to overwrite the existing entry with the input information?\n\n" +
                             "WARNING: This action will permanetly delete the existing entry and will replace it replace it with your new entry.", "", MessageBoxButtons.OKCancel);
                         if (dialogResult == DialogResult.OK)
                         {
                             // Delete old entry and insert the new one
-                            deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+                            deleteDataFromTable("Game", "Name = \"" + gameInfo[0] + "\" AND Platform = \"" + gameInfo[1] + "\"");
 
                             string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
                             MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
@@ -689,7 +686,7 @@ namespace _366Proj
                         if (dialogResult == DialogResult.OK)
                         {
                             // Delete old entry and insert the new one
-                            deleteDataFromTable("Game", "Name = '" + gameInfo[0] + "' AND Platform = '" + gameInfo[1] + "'");
+                            deleteDataFromTable("Game", "Name = \"" + gameInfo[0] + "\" AND Platform = \"" + gameInfo[1] + "\"");
 
                             string sqlite_stmt = "INSERT INTO Game (Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year, Favorited) VALUES (" + sb + gameRank + ", " + gameYear + ", " + favorite + ")";
                             MessageBox.Show("Attemping to add \"" + gameInfo[0] + "\" for the " + gameInfo[1] + " into the database.");
@@ -714,7 +711,7 @@ namespace _366Proj
                 string name = title_textBox.Text.ToString();
                 string platform = Platform_textBox.Text.ToString();
 
-                deleteDataFromTable("Game", "Name = '" + name + "' AND Platform = '" + platform + "'");
+                deleteDataFromTable("Game", "Name = \"" + name + "\" AND Platform = \"" + platform + "\"");
             }
 
             // Clear all textboxes in the add new game panel
@@ -787,7 +784,7 @@ namespace _366Proj
                 {
                     try
                     {
-                        cmd.CommandText = @"SELECT Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year FROM Game WHERE Name = '" + Name + "' AND Platform = '" + Platform + "'";
+                        cmd.CommandText = "SELECT Name, Platform, Genre, ESRB_Rating, Publisher, Developer, PlayerCount, ReleaseDate, Rank, Year FROM Game WHERE Name = \"" + Name + "\" AND Platform = \"" + Platform + "\"";
                         cmd.Connection = conn;
                         conn.Open();
 
@@ -816,6 +813,67 @@ namespace _366Proj
                     }
                 }
             }
+        }
+
+        private void viewUserReviews_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void createUserReview_TextReview_Enter(object sender, EventArgs e)
+        {
+            if(createUserReview_TextReview.Text == "Write Review Here...")
+            {
+                createUserReview_TextReview.Text = "";
+                createUserReview_TextReview.ForeColor = Color.Black;
+            }
+        }
+
+        private void createUserReview_TextReview_Leave(object sender, EventArgs e)
+        {
+            if (createUserReview_TextReview.Text == "")
+            {
+                createUserReview_TextReview.Text = "Write Review Here...";
+                createUserReview_TextReview.ForeColor = Color.Silver;
+            }
+        }
+
+        private void searchBox_Click(object sender, EventArgs e)
+        {
+            if(searchBox.Text == "Search...")
+            {
+                searchBox.Text = "";
+                searchBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void searchBox_Leave(object sender, EventArgs e)
+        {
+            if (searchBox.Text == "")
+            {
+                searchBox.Text = "Search...";
+                searchBox.ForeColor = Color.Silver;
+            }
+        }
+
+        private void Metascore_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (Metascore.Value == 0)
+                minMetascoreString = "";
+            else
+                minMetascoreString = "m.metascore > " + Metascore.Value.ToString() + " AND ";
+            string searchString = searchResultBox.Text;
+            SearchHelper(searchString);
+        }
+
+        private void VGChartzScore_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (VGChartzScore.Value == 0)
+                minVGChartzScoreString = "";
+            else
+                minVGChartzScoreString = "v.VGChartzscore > " + VGChartzScore.Value.ToString() + " AND ";
+            string searchString = searchResultBox.Text;
+            SearchHelper(searchString);
         }
     }
 }
